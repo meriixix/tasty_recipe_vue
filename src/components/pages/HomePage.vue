@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Header from "./header/Header.vue";
-import Footer from "./footer/Footer.vue";
-import HomeRecipeList from "./recipes/HomeRecipeList.vue";
-import Category from './category/Category.vue';
+import Header from "../header/Header.vue";
+import Footer from "../footer/Footer.vue";
+import HomeRecipeList from "../recipes/HomeRecipeList.vue";
+import Category from '../category/Category.vue';
 
 export default {
   components: {

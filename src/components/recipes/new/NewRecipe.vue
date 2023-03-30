@@ -1,0 +1,18 @@
+<template>
+    <ul class="list-group">
+        <new-recipe-header></new-recipe-header>
+        <new-recipe-body></new-recipe-body>
+    </ul>
+</template>
+
+<script>
+import NewRecipeHeader from "./NewRecipeHeader.vue"
+import NewRecipeBody from "./NewRecipeBody.vue"
+
+export default {
+    components: {
+        NewRecipeHeader,
+        NewRecipeBody
+    }
+}
+</script>

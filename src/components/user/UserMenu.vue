@@ -22,7 +22,7 @@
       <li class="list-group-item text-secondary" @click="$emit('changeComponent', 'favorite-recipes')">
         <i class="fas fa-heart pe-2"></i>Favorited Recipes
       </li>
-      <li class="list-group-item text-secondary" @click="$emit('changeComponent', 'my-recipe')"> 
+      <li class="list-group-item text-secondary" @click="$emit('changeComponent', 'user-recipe')"> 
         <i class="fa-solid fa-burger pe-2"></i>My Recipe
       </li>
     </ul>

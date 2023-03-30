@@ -15,12 +15,12 @@
 
 
 <script>
-import Header from "./header/Header.vue";
-import Footer from "./footer/Footer.vue";
-import UserMenu from "./user/UserMenu.vue";
-import FavoriteRecipes from "./user/FavoriteRecipes.vue";
-import MyRecipe from "./user/MyRecipe.vue";
-import PersonalInfo from "./user/PersonalInfo.vue";
+import Header from "../header/Header.vue";
+import Footer from "../footer/Footer.vue";
+import UserMenu from "../user/UserMenu.vue";
+import FavoriteRecipes from "../user/FavoriteRecipes.vue";
+import UserRecipe from "../user/UserRecipe.vue";
+import PersonalInfo from "../user/PersonalInfo.vue";
 
 export default {
   data() {
@@ -33,7 +33,7 @@ export default {
     Footer,
     UserMenu,
     FavoriteRecipes,
-    MyRecipe,
+    UserRecipe,
     PersonalInfo,
   },
 };

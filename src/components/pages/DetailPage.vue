@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import Header from "./header/Header.vue";
-import Footer from "./footer/Footer.vue";
-import RecipeDetail from "./recipes/detail/RecipeDetail.vue";
+import Header from "../header/Header.vue";
+import Footer from "../footer/Footer.vue";
+import RecipeDetail from "../recipes/detail/RecipeDetail.vue";
 
 export default {
   computed: {
