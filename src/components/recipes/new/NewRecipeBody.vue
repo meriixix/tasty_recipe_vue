@@ -3,13 +3,13 @@
         <!-- General Information -->
         <general-information></general-information>
         <!-- Time Setting -->
-        <time-setting></time-setting>
+        <!-- <time-setting></time-setting> -->
         <!-- Ingredients -->
-        <ingredients></ingredients>
+        <!-- <ingredients></ingredients> -->
         <!-- Directions -->
-        <directions></directions>
+        <!-- <directions></directions> -->
         <!-- Submit Button -->
-        <submit-button></submit-button>
+        <!-- <submit-button></submit-button> -->
     </li>
 </template>
 

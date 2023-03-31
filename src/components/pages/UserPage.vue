@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="container-md my-5 py-5">
       <div class="row">
         <user-menu @changeComponent="currentTabComponent = $event"></user-menu>
@@ -9,14 +8,11 @@
         </div>
       </div>
     </div>
-    <Footer></Footer>
   </div>
 </template>
 
 
 <script>
-import Header from "../header/Header.vue";
-import Footer from "../footer/Footer.vue";
 import UserMenu from "../user/UserMenu.vue";
 import FavoriteRecipes from "../user/FavoriteRecipes.vue";
 import UserRecipe from "../user/UserRecipe.vue";
@@ -29,8 +25,6 @@ export default {
     };
   },
   components: {
-    Header,
-    Footer,
     UserMenu,
     FavoriteRecipes,
     UserRecipe,

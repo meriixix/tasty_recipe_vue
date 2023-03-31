@@ -9,6 +9,8 @@
           type="text"
           class="form-control form-control-sm border-0 rounded-pill"
           placeholder="Search Recipe"
+          v-model="keyword"
+          @keydown="searchKeyword"
         />
       </div>
     </div>
@@ -17,3 +19,19 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      keyword: ""
+    }
+  },
+  methods: {
+    searchKeyword() {
+      console.log("search bar", this.keyword)
+      this.$router.push({path: 'search', query: {key: this.keyword}})
+    }
+  }
+}
+</script>

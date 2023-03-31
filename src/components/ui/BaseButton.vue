@@ -1,5 +1,5 @@
 <template>
-  <button class="btn rounded-pill">
+  <button class="btn rounded-pill" @click="$emit('addMoreClick')">
     <slot></slot>{{ buttonName }}
   </button>
 </template>

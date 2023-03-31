@@ -555,5 +555,8 @@ export const store = new Vuex.Store({
     getRecepById: (state) => (id) => {
       return state.recipes.find((recipe) => recipe.id === id);
     },
+    getSearchData: (state) => (key) => {
+      return state.recipes.filter((recipe) => recipe.name.toLowerCase().indexOf(key) !== -1)
+    }
   },
 });

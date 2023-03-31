@@ -4,7 +4,12 @@
     class="form-control"
     :id="id"
     :placeholder="placeholder"
+    :value="value"
+    @input="$emit('input', $event.target.value)"
+    @focus="$emit('totalTimeFocus', $event.target.value)"
+    :readonly="readonly === '1'"
   />
+
 </template>
 
 <script>
@@ -21,7 +26,15 @@ export default {
         placeholder: {
             type: String,
             require: false,
+        },
+        value: {
+            type: [String, Number, File, Array]
+        },
+        readonly: {
+            type: String,
+            default: "0"
         }
-    }
+    },
+    
 }
 </script>
