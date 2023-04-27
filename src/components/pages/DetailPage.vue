@@ -5,6 +5,7 @@
         <div class="row my-4">
           <div class="col-12 col-sm-2"></div>
           <recipe-detail :recipe="detailData"></recipe-detail>
+          
           <div class="col-12 col-sm-2"></div>
         </div>
       </div>
@@ -16,10 +17,13 @@
 import RecipeDetail from "../recipes/detail/RecipeDetail.vue";
 
 export default {
-  computed: {
-    detailData() {
-      return this.$store.getters.getRecepById(this.$route.params.id);
-    },
+  data() {
+    return {
+      detailData: null
+    }
+  },
+  created() {
+      this.detailData = this.$store.getters.getRecepById(this.$route.params.id);
   },
   components: {
     RecipeDetail,

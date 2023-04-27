@@ -18,12 +18,22 @@
           <p>Email</p>
         </div>
         <div class="ps-4 ms-4">
-          <p>Baskara</p>
-          <p>Putra</p>
-          <p>wordfangs</p>
-          <p>wordfangs@email.com</p>
+          <p>{{ userData.firstname }}</p>
+          <p>{{ userData.lastname}}</p>
+          <p>{{ userData.username}}</p>
+          <p>{{ userData.email }}</p>
         </div>
       </div>
     </li>
   </ul>
 </template>
+
+<script>
+export default {
+  computed: {
+    userData() {
+      return this.$store.state.userLogin;
+    },
+  },
+}
+</script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- General Information -->
+    <!-- General Information Start-->
     <div>
       <p class="my-3 fs-5 fw-semibold">General Information</p>
       <div>
@@ -45,7 +45,7 @@
             type="text"
             id="recipe-title"
             placeholder="Give your recipe a title"
-            v-model="recipeData.title"
+            v-model="recipeData.name"
           ></base-input>
         </div>
 
@@ -71,8 +71,9 @@
         </div>
       </div>
     </div>
+    <!-- General Information End -->
 
-    <!-- Time Setting -->
+    <!-- Time Setting Start -->
     <div class="border-top py-1">
       <p class="my-3 fs-5 fw-semibold">Time Setting</p>
       <div>
@@ -103,8 +104,9 @@
         </div>
       </div>
     </div>
+    <!-- Time Setting End -->
 
-    <!-- Ingredients -->
+    <!-- Ingredients Start -->
     <div class="border-top py-1">
       <p class="my-3 fs-5 fw-semibold">Ingredients</p>
       <p>
@@ -125,9 +127,10 @@
             ></base-input>
           </div>
           <div
-            class="col-lg-1 col-1 col-form-label align-self-end"
+            class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient"
             style="color: #cb3a31"
-            v-if="count > 1"
+            v-if="ingredientCount > 1"
+            @click="deleteIngredient(count - 1)"
           >
             <i class="fa-regular fa-trash-can px-1"></i
             ><span class="d-none d-md-inline">Delete</span>
@@ -137,12 +140,13 @@
       </div>
 
       <!-- Add Button -->
-      <base-button buttonName="Add More" class="new-ingredient-btn px-3 py-2" @addMoreClick="addIngredient">
+      <base-button buttonName="Add More" class="new-ingredient-btn px-3 py-2" @clickButton="addIngredient">
         <i class="fa-solid fa-plus me-2"></i>
       </base-button>
     </div>
+    <!-- Ingredients End -->
 
-    <!-- Directions -->
+    <!-- Directions Start -->
     <div class="border-top my-3">
       <p class="my-3 fs-5 fw-semibold">Directions</p>
       <p>
@@ -151,34 +155,44 @@
         different parts of the recipe
       </p>
       <div>
-        <div class="mb-3 row">
+        <div class="mb-3 row" v-for="count in directionCount" :key="count">
           <div class="col-md-11 col-11">
             <label for="direction" class="form-label align-self-end"
-              ><b>Step 1</b><span style="color: #cb3a31">*</span></label
+              ><b>Step {{count}}</b><span style="color: #cb3a31">*</span></label
             >
             <base-input
               id="direction"
               type="text"
               placeholder="Ex : 1 cup sugar"
+              v-model="recipeData.directions[count - 1]"
             ></base-input>
           </div>
           <div
-            class="col-md-1 col-1 col-form-label align-self-end"
+            class="col-md-1 col-1 col-form-label align-self-end delete-directions"
             style="color: #cb3a31"
+            v-if="directionCount > 1"
+            @click="deleteDirection(count - 1)"
           >
             <i class="fa-regular fa-trash-can px-1"></i
             ><span class="d-none d-md-inline">Delete</span>
           </div>
         </div>
       </div>
+
       <!-- Add Button -->
-      <base-button buttonName="Add More" class="new-ingredient-btn px-3 py-2">
+      <base-button buttonName="Add More" class="new-ingredient-btn px-3 py-2" @clickButton="addDirection"> 
         <i class="fa-solid fa-plus me-2"></i>
       </base-button>
       
     </div>
+    <!-- Direction End -->
 
-    <div>{{recipeData}}</div>
+    <!-- Submit Button Start-->
+    <div class="border-top py-3 d-flex my-4 justify-content-end">
+      <base-button buttonName="Cancel" class="cancel-btn px-3 py-2 me-1"></base-button>
+      <base-button buttonName="Submit" class="submit-recipe-btn px-3 py-2 ms-1" @clickButton="addNewRecipe"></base-button>
+    </div>
+
   </div>
 </template>
 
@@ -186,26 +200,26 @@
 import BaseInput from "../../ui/BaseInput.vue";
 import BaseSelect from "../../ui/BaseSelect.vue";
 import BaseButton from "../../ui/BaseButton.vue";
-import axios from "axios";
+
 
 export default {
   components: {
     BaseInput,
     BaseSelect,
-    BaseButton,
+    BaseButton
   },
   data() {
     return {
       recipeData: {
         imageLink: "",
-        title: "",
+        name: "",
         description: "",
-        category: "",
+        category: "LUNCH",
         prepTime: 0,
         cookTime: 0,
         totalTime: 0,
         ingredients: [],
-        direcionts: []
+        directions: []
       },
       ingredientCount: 1,
       directionCount: 1
@@ -218,9 +232,28 @@ export default {
     addIngredient(item) {
       this.ingredientCount++
     },
-    addDirecton(item) {
-
+    addDirection(item) {
+      this.directionCount++
+    },
+    deleteIngredient(index) {
+      this.recipeData.ingredients.splice(index, 1);
+      this.ingredientCount = this.recipeData.ingredients.length
+    },
+    deleteDirection(index) {
+      this.recipeData.directions.splice(index, 1);
+      this.directionCount = this.recipeData.directions.length
+    },
+   async addNewRecipe(item) {
+      // console.log(this.recipeData)
+      await this.$store.dispatch('addNewRecipe', this.recipeData)
+      this.$router.push("/")
     }
   }, 
 };
 </script>
+
+<style>
+  .delete-ingredient:hover, .delete-directions:hover {
+    cursor: pointer;
+  }
+</style>

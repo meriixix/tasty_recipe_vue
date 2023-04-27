@@ -1,7 +1,7 @@
 <template>
     <ul class="list-group">
         <new-recipe-header></new-recipe-header>
-        <new-recipe-body></new-recipe-body>
+        <new-recipe-body :recipes="recipes"></new-recipe-body>
     </ul>
 </template>
 
@@ -10,6 +10,12 @@ import NewRecipeHeader from "./NewRecipeHeader.vue"
 import NewRecipeBody from "./NewRecipeBody.vue"
 
 export default {
+    props: {
+        recipes: {
+            type: Object,
+            require: false
+        }
+    },
     components: {
         NewRecipeHeader,
         NewRecipeBody

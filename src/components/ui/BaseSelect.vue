@@ -1,5 +1,5 @@
 <template>
-    <select class="form-select" :id="id">
+    <select class="form-select" :id="id" @input="$emit('input', $event.target.value)">
         <option v-for="(item, index) in data" :key="index" :value="item">{{ item }}</option>
     </select>
 </template>
@@ -14,6 +14,11 @@ export default {
         id: {
             type: String,
             require: true
+        }
+    },
+    data() {
+        return {
+            selected: this.data[0]
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-9 col-5 py-0">
+  <div class="col-sm-8 col-4 py-0">
     <div class="d-none d-sm-block">
       <div
         class="header__searchbar input-group align-items-center border rounded-pill"
@@ -10,7 +10,8 @@
           class="form-control form-control-sm border-0 rounded-pill"
           placeholder="Search Recipe"
           v-model="keyword"
-          @keydown="searchKeyword"
+          @keyup="searchKeyword"
+          @focus="searchFocus"
         />
       </div>
     </div>
@@ -24,14 +25,20 @@
 export default {
   data() {
     return {
-      keyword: ""
-    }
+      keyword: "",
+    };
   },
   methods: {
     searchKeyword() {
-      console.log("search bar", this.keyword)
-      this.$router.push({path: 'search', query: {key: this.keyword}})
+      if (this.keyword === "") {
+        this.$router.push("/");
+      } else {
+        this.$router.push({ path: "/search", query: { key: this.keyword } });
+      }
+    },
+    searchFocus() {
+      this.$router.push({ path: "/search", query: { key: this.keyword } });
     }
-  }
-}
+  },
+};
 </script>

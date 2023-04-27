@@ -24,6 +24,10 @@ export default {
     HomeRecipeList,
     Category
   },
+  // created() {
+  //   console.log("Token : " + this.$store.state.token)
+  //   console.log("User data : ", this.$store.state.userLogin)
+  // }
 };
 </script>
 

@@ -17,6 +17,9 @@ export default {
   components: {
     Navbar,
   },
+  created() {
+    console.log("halaman berubah")
+  },
 };
 </script>
 

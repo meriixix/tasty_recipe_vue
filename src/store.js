@@ -1,562 +1,215 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    recipes: [
-      {
-        id: "1",
-        category: "BREAKFAST",
-        name: "Crispy Carrot Fries",
-        createdBy: "László Barbara",
-        image: "Food 1.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "2",
-        category: "BREAKFAST",
-        name: "Easy Enchilada Sauce",
-        createdBy: "László Barbara",
-        image: "Food 2.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "3",
-        category: "BREAKFAST",
-        name: "Thai Edamame Salad",
-        createdBy: "László Barbara",
-        image: "Food 3.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "4",
-        category: "BREAKFAST",
-        name: "Nut Butter Snack Bites",
-        createdBy: "László Barbara",
-        image: "Food 4.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "5",
-        category: "BREAKFAST",
-        name: "Quinoa and Asparagus",
-        createdBy: "László Barbara",
-        image: "Food 5.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "6",
-        category: "BREAKFAST",
-        name: "Mushroom and Kale Pasta",
-        createdBy: "László Barbara",
-        image: "Food 6.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "7",
-        category: "BREAKFAST",
-        name: "Crab Cakes",
-        createdBy: "László Barbara",
-        image: "Food 7.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "8",
-        category: "BREAKFAST",
-        name: "Gluten free Double Chocolate Chip Brownies",
-        createdBy: "László Barbara",
-        image: "Food 8.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "9",
-        category: "BREAKFAST",
-        name: "Crispy Carrot Fries",
-        createdBy: "László Barbara",
-        image: "Food 9.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "10",
-        category: "BREAKFAST",
-        name: "Easy Enchilada Sauce",
-        createdBy: "László Barbara",
-        image: "Food 10.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "11",
-        category: "BREAKFAST",
-        name: "Thai Edamame Salad",
-        createdBy: "László Barbara",
-        image: "Food 11.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "12",
-        category: "BREAKFAST",
-        name: "Nut Butter Snack Bites",
-        createdBy: "László Barbara",
-        image: "Food 12.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "13",
-        category: "BREAKFAST",
-        name: "Quinoa and Asparagus",
-        createdBy: "László Barbara",
-        image: "Food 13.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "14",
-        category: "BREAKFAST",
-        name: "Mushroom and Kale Pasta",
-        createdBy: "László Barbara",
-        image: "Food 14.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-      {
-        id: "15",
-        category: "BREAKFAST",
-        name: "Crab Cakes",
-        createdBy: "László Barbara",
-        image: "Food 15.png",
-        createdAt: "",
-        preparationTime: 15,
-        cookTime: 20,
-        ingredients: [
-          "4 fresh tomatillos - husked, peeled, and halved",
-          "3 Anaheim chile peppers - seeded and halved",
-          "3 jalapeno peppers - seeded and halved lengthwise",
-          "1 medium onion, halved",
-          "1 green bell pepper, seeded and halved lengthwise",
-          "2 tablespoons olive oil, divided",
-          "salt and ground black pepper to taste",
-          "1 ½ pounds pork shoulder, cut into 1-inch chunks",
-          "½ (12 fluid ounce) can or bottle lager-style beer",
-          "2 tomatoes, chopped",
-          "4 cloves garlic, chopped",
-          "2 tablespoons chopped fresh oregano",
-          "1 tablespoon chopped fresh parsley",
-          "1 tablespoon ground cumin",
-          "1 teaspoon chili powder",
-          "1 beef bouillon cube",
-          "4 ounces cream cheese at room temperature",
-        ],
-        directions: [
-          "Preheat the oven to 425 degrees F (220 degrees C).",
-          "Arrange the halved tomatillos, Anaheim chiles, jalapeños, onion, and bell pepper on a baking sheet. Drizzle vegetables with 1 tablespoon olive oil and sprinkle with salt.",
-          "Roast vegetables in the preheated oven until they begin to show brown spots, about 30 minutes. Allow to cool, then chop vegetables into bite-sized pieces.",
-          "Heat remaining 1 tablespoon olive oil in a large skillet over high heat. Add pork and fry until browned, seasoning with salt and black pepper as it cooks, about 12 minutes. Transfer pork to a slow cooker; stir in roasted vegetables. Mix in beer, tomatoes, garlic, oregano, parsley, cumin, chili powder, and bouillon. Cover and cook on Low until pork is tender, 4 to 6 hours.",
-          "About 1/2 hour before serving, place cream cheese into a bowl and stir in about 1 tablespoon of the chili liquid until thoroughly combined. Continue stirring in chili broth, a tablespoon at a time, until the cream cheese is almost a liquid. Stir cream cheese mixture back into the chili.",
-        ],
-        description:
-          "Green chili is a Colorado favorite, it's always a crowd pleaser when we have out-of-state visitors. Roasting your veggies first gives this recipe a deeper level of flavor. This can be served over rice as a main course, stuffed in enchiladas, or over potatoes and eggs.",
-      },
-    ],
+    recipes: [],
+    userLogin: {},
+    token: null,
+    isLogin: false
   },
   getters: {
     getRecepById: (state) => (id) => {
       return state.recipes.find((recipe) => recipe.id === id);
     },
     getSearchData: (state) => (key) => {
-      return state.recipes.filter((recipe) => recipe.name.toLowerCase().indexOf(key) !== -1)
+      return state.recipes.filter(
+        (recipe) => recipe.name.toLowerCase().indexOf(key) !== -1
+      );
+    },
+  },
+  mutations: {
+    addNewRecipe(state, payload) {
+      state.recipes.push(payload);
+    },
+    setNewRecipe(state, payload) {
+      state.recipes = payload;
+    },
+    setToken(state, payload) {
+      state.token = payload;
+      console.log(state.token);
+    },
+    setUserLogin(state, payload) {
+      state.userLogin = payload;
+    },
+    updateRecipe(state, payload) {
+      const newRecipe = state.recipes.map((recipe) => {
+        if (recipe.id === payload.id) {
+          recipe = payload;
+        }
+        return recipe;
+      });
+      state.recipes = newRecipe;
+    },
+    deleteRecipe(state, payload) {
+      const recipes = state.recipes.filter((item) => item.id !== payload);
+      state.recipes = recipes;
+    },
+    setLoginStatus(state, payload) {
+      state.isLogin = payload
     }
+  },
+  actions: {
+    async recipeList({ commit }) {
+      try {
+        const { data } = await axios.get(
+          "https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes.json"
+        );
+        const arr = [];
+        for (let key in data) {
+          arr.push({ id: key, ...data[key] });
+        }
+        commit("setNewRecipe", arr);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async addNewRecipe({ commit, state }, payload) {
+      const newData = {
+        ...payload,
+        username: state.userLogin.username,
+        createdAt: Date.now(),
+        likes: ["null"],
+        userId: state.userLogin.userId,
+      };
+      try {
+        const { data } = await axios.post(
+          "https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes.json?auth=" +
+            state.token,
+          newData
+        );
+        commit("addNewRecipe", { id: data.name, ...newData });
+      } catch (err) {
+        console.log(err.message);
+      }
+    },
+    async updateLike({ commit, state, getters }, payload) {
+      const userId = state.userLogin.userId;
+      const recipe = getters.getRecepById(payload.recipeId);
+      if (payload.status) {
+        const newLikes = recipe.likes.filter((like) => like !== userId);
+        recipe.likes = newLikes;
+      } else {
+        recipe.likes.push(userId);
+      }
+      try {
+        const data = await axios.put(
+          `https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes/${payload.recipeId}.json?auth=${state.token}`,
+          recipe
+        );
+        commit("updateRecipe", recipe);
+      } catch (err) {
+        if (err.message === "Request failed with status code 401") {
+          commit("setLoginStatus", false)
+        }
+      }
+    },
+    async deleteRecipe({ commit, state }, payload) {
+      try {
+        const { data } = await axios.delete(
+          `https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes/${payload}.json?auth=${state.token}`
+        );
+        commit("deleteRecipe", payload);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async updateRecipe({commit, state}, payload) {
+      let {id: _, ...newRecipe} = payload
+      console.log(newRecipe);
+      console.log(payload)
+      try {
+        const { data } = await axios.put(
+          `https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes/${payload.id}.json?auth=${state.token}`, newRecipe
+        );
+        commit("updateRecipe", payload)
+      } catch (err) {
+
+      }
+    },
+
+    // AUTH ACTION
+    async userSignup({ commit, dispatch }, payload) {
+      console.log(payload);
+      const APIkey = "AIzaSyAZw4XY-USmeiN9j1cLmxJ8W8mu_l2a19U";
+      const authURL = payload.isLogin
+        ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="
+        : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
+
+      try {
+        const { data } = await axios.post(authURL + APIkey, {
+          email: payload.email,
+          password: payload.password,
+          returnSecureToken: true,
+        });
+
+        // Save Token and Expiration date on cookies
+        Cookies.set("jwt", data.idToken);
+        Cookies.set(
+          "tokenExpirationDate",
+          new Date().getTime() + Number.parseInt(data.expiresIn) * 1000
+        );
+        // Cookies.set("UID", data.localId);
+        commit("setToken", data.idToken);
+
+        // If status = login
+        if (!payload.isLogin) {
+          const newUserData = {
+            userId: data.localId,
+            firstname: payload.firstname,
+            lastname: payload.lastname,
+            username: payload.username,
+            email: payload.email,
+          };
+          await dispatch("newUser", newUserData);
+        } else {
+          await dispatch("getUser", data.localId);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async newUser({ commit }, payload) {
+      try {
+        const { data } = await axios.post(
+          "https://recipe-vue-batch2-default-rtdb.firebaseio.com/user.json",
+          payload
+        );
+        commit("setUserLogin", { ...payload });
+        commit("setLoginStatus", true)
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async getUser({ commit }, payload) {
+      try {
+        const { data } = await axios.get(
+          `https://recipe-vue-batch2-default-rtdb.firebaseio.com/user.json`
+        );
+        for (let key in data) {
+          if (data[key].userId === payload) {
+            commit("setUserLogin", data[key]);
+            commit("setLoginStatus", true)
+            Cookies.set("user", JSON.stringify(data[key]));
+            return;
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    logout({ commit }, payload) {
+      commit("setToken", null);
+      commit("setUserLogin", {});
+      commit("setLoginStatus", false)
+      Cookies.remove("jwt");
+      Cookies.remove("user");
+      Cookies.remove("tokenExpirationDate");
+      Cookies.remove("UID");
+    },
   },
 });
